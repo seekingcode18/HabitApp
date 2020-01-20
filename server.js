@@ -5,6 +5,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const port = 8080;
 const userRoutes = express.Router();
+const seed = require('./src/containers/Home/seeds');
 
 app.use(cors());
 app.use(bodyparser.json());
@@ -32,6 +33,11 @@ userRoutes.route("/add").post((req, res) => {
       res.status(400).send("adding failed");
     });
 });
+
+app.get("/seed", (req,res) => {
+  seed(req,res)
+  res.send("Database seeded!")
+})
 
 app.listen(port, () => {
   console.log("server is running on port 8080");
