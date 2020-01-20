@@ -26,9 +26,7 @@ userRoutes.route("/add").post((req, res) => {
   user
     .save()
     .then(user => {
-      res.status(200).json({
-        user: "user added"
-      });
+      res.status(200).send("user added successfully");
     })
     .catch(err => {
       res.status(400).send("adding failed");
@@ -38,3 +36,5 @@ userRoutes.route("/add").post((req, res) => {
 app.listen(port, () => {
   console.log("server is running on port 8080");
 });
+
+module.exports = app;
