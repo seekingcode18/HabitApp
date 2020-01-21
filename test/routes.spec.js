@@ -43,25 +43,39 @@ describe("routes", () => {
     isConnected.should.be(true);
   });
 
-  it("should post a user", done => {
-    chai
-      .request("mongodb://localhost:27017/habits_test")
-      .post("/users/add")
-      .send({
-        name: "dan",
-        habits: [
-          {
-            title: "meditation",
-            completed: true
-          }
-        ]
-      })
-      .end((error, res) => {
-        res.body.should.be.a("object");
-        res.body.should.have.property("name");
-        res.body.should.have.property("habits");
-        res.body.habits.should.be.an("array");
-        done();
-      });
-  });
+  it("Should add a single habit onto /users/:id/habits", done => {
+    chai.request(server)
+    .post("/user/:id/habits")
+    .send({"title": "testTitle"})
+    .end((err,res) => {
+      res.should.have.status(200);
+      res.body.should.be.a("object");
+      res.body.should.have.property("title");
+      done();
+    })
+  })
+
+  // it("should post a user", done => {
+  //   chai
+  //     .request("mongodb://localhost:27017/habits_test")
+  //     .post("/users/add")
+  //     .send({
+  //       name: "dan",
+  //       habits: [
+  //         {
+  //           title: "meditation",
+  //           completed: true
+  //         }
+  //       ]
+  //     })
+  //     .end((error, res) => {
+  //       res.body.should.be.a("object");
+  //       res.body.should.have.property("name");
+  //       res.body.should.have.property("habits");
+  //       res.body.habits.should.be.an("array");
+  //       done();
+  //     });
+  // });
+
+
 });
