@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Home from '../Home/Home';
+import fetch from '../../api/fetch';
 import Add_habit from '../../components/Add_habit/Add_habit';
 import {
   Route,
@@ -8,7 +9,51 @@ import {
   Link
 } from 'react-router-dom';
 
+function useFetch(url, defaultResponse){
+  const [data, setData] = useState(defaultResponse);
+  async function getDataFromApi(url){
+    try{
+      const res = await (fetch(url));
+      const data = await (res.json());
+      setData({
+        isLoading: false,
+        data
+      }) 
+    } catch(error) {
+      console.error(error);
+    }
+  }
+  useEffect(() => {
+    getDataFromApi(url);
+  }, [])
+  return data
+}
+
 function App() {
+  const [state, setState] = useState({userId: null});
+  fetch.findUserByUsername("username2")//only call this on form submit and use dynamic data
+  .then(result => {
+    setState({userId: result})
+console.log(result)
+  })
+  // console.log(`result: ${result}`)
+
+
+
+
+
+
+
+  // const username = "username1";
+  // const apiEndpoint = `http://localhost:8081/authentication/${username}`
+  // const userFetchResponse = useFetch(apiEndpoint, {isLoading: true, data: null});
+  
+  // if(!userFetchResponse.data || userFetchResponse.isLoading) {
+  //   return "loading";
+  // } else{
+  //   console.log(`userFetchResponse: ${userFetchResponse.data}`)
+  // }
+
   return (
     <div className="App">
       <Link to='/'><h4>Persisting Title</h4></Link>

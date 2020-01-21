@@ -5,10 +5,9 @@ export default function Habits() {
 
     const [state, setState] = useState({habits: []})
     useEffect(() => {
-        fetch("http://localhost:8081/users/5e259fee807dc62f6c96a3b6/habits")
+        fetch("http://localhost:8081/users/5e270c3803d1fb1018cae485/habits")
           .then(res => res.json())
           .then((res)=> setState({habits: res}))
-        //   .then(res => console.log(res));
       });
     return (
         <div>

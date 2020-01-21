@@ -67,6 +67,18 @@ app.post('/users/:id/habits', async (req,res) => {
   //   res.status(500).json({message: error.message});
   // }
 });
+
+app.get('/authentication/:username', async (req,res) => {
+  // console.log(req.body.username)
+  try{
+    const user = await Users.findOne({username : req.params.username})
+    res.json(user._id)
+  }
+  catch(err) {
+    res.status(404).json({message: err.message});
+}
+})
+
 app.get("/seed", (req,res) => {
   seed(req,res)
   res.send("Database seeded!")
