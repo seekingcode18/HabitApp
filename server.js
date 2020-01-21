@@ -34,10 +34,41 @@ userRoutes.route("/add").post((req, res) => {
     });
 });
 
+
+app.get('/users/:id/habits',async (req,res) => {
+  try {
+    const users = await Users.find({_id: req.params.id});
+    res.json(users[0].habits);
+}
+  catch(error) {
+    res.status(500).json({message: error.message});
+  }
+});
+
+app.post('/users/:id/habits', async (req,res) => {
+  // console.log(req.body)
+  Users.findById(req.params.id, (err, user)=> {
+    console.log(user);
+    user.habits.push({title: req.body.title})
+    user.save().then(user => {
+      res.json('Updated user name')
+    })
+    .catch(err => {
+      res.status(400).json({message: err.message});
+    })
+  })
+  // try {
+  //   const users = await Users.updateOne({_id: req.params.id}, req.body.title);
+  //   res.json(users);
+  // }
+  // catch(error){
+  //   res.status(500).json({message: error.message});
+  // }
+});
 app.get("/seed", (req,res) => {
   seed(req,res)
   res.send("Database seeded!")
-})
+});
 
 app.listen(port, () => {
   console.log("server is running on port 8080");
