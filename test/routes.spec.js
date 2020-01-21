@@ -1,6 +1,7 @@
 process.env.NODE_ENV = "test";
 const mocha = require("mocha");
 const chai = require("chai");
+const assert = require('chai').assert;
 const chaiHttp = require("chai-http");
 const server = require("../server");
 const mongoose = require("mongoose");
@@ -43,17 +44,39 @@ describe("routes", () => {
     isConnected.should.be(true);
   });
 
+  // it('should list all habits on /users/:id/habits', (done) => {
+  //   chai.request(server)
+  //     .get('/users/5e26d420ce59b307c4756597/habits')
+  //     .end((err, res) => {
+  //       res.should.have.status(200);
+  //       done();
+  //     })
+  // })
+
   it("Should add a single habit onto /users/:id/habits", done => {
-    chai.request(server)
-    .post("/user/:id/habits")
-    .send({"title": "testTitle"})
-    .end((err,res) => {
-      res.should.have.status(200);
-      res.body.should.be.a("object");
-      res.body.should.have.property("title");
-      done();
+    const db_name = process.env.NODE_ENV === "test" ? "habits_test" : "habits";
+    let url = `mongodb://localhost:27017/${db_name}`;
+    console.log('test console log')
+    mongoose.connect(url, {
+      useNewUrlParser: true
+    });
+
+    mongoose.connection.once('open', () => {
+      console.log('connection achieved in test files')
+      const user = new User({name: 'philip',habits:[{title:"vegetables",completed:false}]})
+      user.save().then(() => {
+        assert(user.isNew === true);
+        done()
+      })
+    }).on('error', (err) => {
+      console.log('connection error in test file:', err)
+    })
+
+    done();
     })
   })
+
+
 
   // it("should post a user", done => {
   //   chai
@@ -78,4 +101,4 @@ describe("routes", () => {
   // });
 
 
-});
+// });

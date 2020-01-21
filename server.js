@@ -3,7 +3,7 @@ const app = express();
 const bodyparser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const port = 8080;
+const port = process.env.PORT || 8081;
 const userRoutes = express.Router();
 const seed = require('./src/containers/Home/seeds');
 
@@ -22,6 +22,7 @@ connection.once("open", () => {
   console.log("mongodb connection established!");
 });
 
+// adds a new user
 userRoutes.route("/add").post((req, res) => {
   let user = new Users(req.body);
   user
@@ -34,7 +35,7 @@ userRoutes.route("/add").post((req, res) => {
     });
 });
 
-
+// gets habits for one user
 app.get('/users/:id/habits',async (req,res) => {
   try {
     const users = await Users.find({_id: req.params.id});
@@ -45,6 +46,7 @@ app.get('/users/:id/habits',async (req,res) => {
   }
 });
 
+// inserts one habit into a user
 app.post('/users/:id/habits', async (req,res) => {
   // console.log(req.body)
   Users.findById(req.params.id, (err, user)=> {
@@ -71,7 +73,7 @@ app.get("/seed", (req,res) => {
 });
 
 app.listen(port, () => {
-  console.log("server is running on port 8080");
+  console.log(`server is running on ${port}`);
 });
 
 module.exports = app;
