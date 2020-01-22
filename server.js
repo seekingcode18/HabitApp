@@ -9,6 +9,9 @@ const seed = require('./src/containers/Home/seeds');
 
 app.use(cors());
 app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({
+  extended: true
+}))
 app.use("/users", userRoutes);
 let Users = require("./user.model");
 
@@ -68,10 +71,23 @@ app.post('/users/:id/habits', async (req,res) => {
   // }
 });
 
-app.get('/authentication/:username', async (req,res) => {
-  // console.log(req.body.username)
+//testing route to check that username using 'params' has been received from login
+// app.post('/authentication', async (req,res) => {
+//   console.log(req.body)
+// //   try{
+// //     const user = await Users.findOne({username : req.params.username})
+// //     res.json(user._id)
+// //   }
+// //   catch(err) {
+// //     res.status(404).json({message: err.message});
+// // }
+// })
+
+// check username and password using req.body <-- data passed on using axios
+app.post('/authentication', async (req,res) => {
+  console.log(req.body)
   try{
-    const user = await Users.findOne({username : req.params.username})
+    const user = await Users.findOne({username : req.body.username, password: req.body.password})
     res.json(user._id)
   }
   catch(err) {
