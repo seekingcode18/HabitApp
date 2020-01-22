@@ -5,13 +5,15 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const port = process.env.PORT || 8081;
 const userRoutes = express.Router();
-const seed = require('./src/containers/Home/seeds');
+const seed = require("./src/containers/Home/seeds");
 
 app.use(cors());
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({
-  extended: true
-}))
+app.use(
+  bodyparser.urlencoded({
+    extended: true
+  })
+);
 app.use("/users", userRoutes);
 let Users = require("./user.model");
 
@@ -39,29 +41,30 @@ userRoutes.route("/add").post((req, res) => {
 });
 
 // gets habits for one user
-app.get('/users/:id/habits',async (req,res) => {
+app.get("/users/:id/habits", async (req, res) => {
   try {
-    const users = await Users.find({_id: req.params.id});
+    const users = await Users.find({ _id: req.params.id });
     res.json(users[0].habits);
-}
-  catch(error) {
-    res.status(500).json({message: error.message});
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
 // inserts one habit into a user
-app.post('/users/:id/habits/:newHabit', async (req,res) => {
+app.post("/users/:id/habits/:newHabit", async (req, res) => {
   // console.log('req params newHabit = ', req.params.newHabit)
-  Users.findById(req.params.id, (err, user)=> {
-    user.habits.push({title: req.params.newHabit})
-    user.save().then(user => {
-      // res.json('Updated user name')
-      res.redirect(`http://localhost:3000/id?id=${user._id}`)
-    })
-    .catch(err => {
-      res.status(400).json({message: err.message});
-    })
-  })
+  Users.findById(req.params.id, (err, user) => {
+    user.habits.push({ title: req.params.newHabit });
+    user
+      .save()
+      .then(user => {
+        // res.json('Updated user name')
+        res.redirect(`http://localhost:3000/id?id=${user._id}`);
+      })
+      .catch(err => {
+        res.status(400).json({ message: err.message });
+      });
+  });
   // try {
   //   const users = await Users.updateOne({_id: req.params.id}, req.body.title);
   //   res.json(users);
@@ -84,26 +87,28 @@ app.post('/users/:id/habits/:newHabit', async (req,res) => {
 // })
 
 // check username and password using req.body <-- data passed on using axios
-app.post('/authentication', async (req,res) => {
-  console.log(req.body.username)
-  try{
-    const user = await Users.findOne({username : req.body.username, password: req.body.password})
+app.post("/authentication", async (req, res) => {
+  console.log(req.body.username);
+  try {
+    const user = await Users.findOne({
+      username: req.body.username,
+      password: req.body.password
+    });
     // res.json(user._id)
-    res.redirect(`http://localhost:3000/id?id=${user._id}`)
+    res.redirect(`http://localhost:3000/id?id=${user._id}`);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
   }
-  catch(err) {
-    res.status(404).json({message: err.message});
-}
-})
+});
 
 // new route to redirect to all the user's habits after they add a new one
 // app.get('/habits', async (req, res) => {
 //   res.redirect(`http://localhost:3000/id?id=${user._id}`)
 // })
 
-app.get("/seed", (req,res) => {
-  seed(req,res)
-  res.send("Database seeded!")
+app.get("/seed", (req, res) => {
+  seed(req, res);
+  res.send("Database seeded!");
 });
 
 app.listen(port, () => {
