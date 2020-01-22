@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Habit from "../../components/Habit/Habit";
 
-export default function Habits() {
+export default function Habits(props) {
 
     const [state, setState] = useState({habits: []})
     useEffect(() => {
-        fetch("http://localhost:8081/users/5e270c3803d1fb1018cae485/habits")
+        fetch(`http://localhost:8081/users/${props.userId}/habits`)
           .then(res => res.json())
           .then((res)=> setState({habits: res}))
+          // .then(res => console.log(res));
       });
+
+    function habitMap(){
+      return(
+        state.habits.map((habit, index) => (
+        <Habit title={habit.title} completed={habit.completed}/>
+      )))
+    }
     return (
         <div>
             <p>This will have a list of habits!</p>
-            {state.habits.map((habit, index) => (
-              <Habit title={habit.title} completed={habit.completed}/>
-            ))}
+            {state.habits.length > 0  ? habitMap() : <p>didn't render</p>}
         </div>
     )
 }

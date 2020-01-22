@@ -36,29 +36,17 @@ function App() {
     setState({userId: result})
 console.log(result)
   })
-  // console.log(`result: ${result}`)
-
-
-
-
-
-
-
-  // const username = "username1";
-  // const apiEndpoint = `http://localhost:8081/authentication/${username}`
-  // const userFetchResponse = useFetch(apiEndpoint, {isLoading: true, data: null});
   
-  // if(!userFetchResponse.data || userFetchResponse.isLoading) {
-  //   return "loading";
-  // } else{
-  //   console.log(`userFetchResponse: ${userFetchResponse.data}`)
-  // }
+
+
 
   return (
     <div className="App">
       <Link to='/'><h4>Persisting Title</h4></Link>
       <Switch>
-        <Route exact path='/' component={Home} />
+        <Route exact path='/'>
+          <Home userId={state.userId}/>
+        </Route>
         <Route path='/add_habit' component={Add_habit} />
       </Switch>
     </div>
