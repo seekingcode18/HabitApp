@@ -39,7 +39,7 @@ export default function Login() {
 
     return (
         <div>
-            <form action="http://localhost:8081/authentication" method="POST" onSubmit={handleSubmit}>
+            <form action="http://localhost:8081/authentication" method="POST">
                 <label for="username">Username:</label>
                 <input type="text" name="username"></input>
                 <label for="password">Password:</label>

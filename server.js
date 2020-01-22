@@ -85,10 +85,11 @@ app.post('/users/:id/habits', async (req,res) => {
 
 // check username and password using req.body <-- data passed on using axios
 app.post('/authentication', async (req,res) => {
-  console.log(req.body)
+  console.log(req.body.username)
   try{
     const user = await Users.findOne({username : req.body.username, password: req.body.password})
-    res.json(user._id)
+    // res.json(user._id)
+    res.redirect(`http://localhost:3000/id?id=${user._id}`)
   }
   catch(err) {
     res.status(404).json({message: err.message});

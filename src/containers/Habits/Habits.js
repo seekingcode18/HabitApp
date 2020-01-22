@@ -5,7 +5,8 @@ export default function Habits(props) {
 
     const [state, setState] = useState({habits: []})
     useEffect(() => {
-        fetch(`http://localhost:8081/users/${props.userId}/habits`)
+      const id = window.location.search.slice(4);
+        fetch(`http://localhost:8081/users/${id}/habits`)
           .then(res => res.json())
           .then((res)=> setState({habits: res}))
           // .then(res => console.log(res));

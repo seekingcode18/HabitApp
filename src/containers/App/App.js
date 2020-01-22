@@ -3,6 +3,7 @@ import './App.css';
 import Home from '../Home/Home';
 import fetch from '../../api/fetch';
 import Add_habit from '../../components/Add_habit/Add_habit';
+import Habits from '../Habits/Habits';
 import Login from '../Login/Login';
 import {
   Route,
@@ -31,6 +32,7 @@ console.log(result)
         </Route>
         <Route path='/login' component={Login} />
         <Route path='/add_habit' component={Add_habit} />
+        <Route path='/id' component={Habits}/>
       </Switch>
     </div>
   );
