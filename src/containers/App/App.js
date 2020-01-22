@@ -28,9 +28,9 @@ console.log(result)
       <Link to='/login'><p>Click me to log in!</p></Link>
       <Switch>
         <Route exact path='/'>
-          <Home userId={state.userId}/>
+          <Login />
         </Route>
-        <Route path='/login' component={Login} />
+        {/* <Route path='/login' component={Login} /> */}
         <Route path='/add_habit' component={Add_habit} />
         <Route path='/id' component={Habits}/>
       </Switch>

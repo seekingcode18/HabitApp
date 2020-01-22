@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from 'react-router-dom';
 import Habit from "../../components/Habit/Habit";
 
 export default function Habits(props) {
@@ -20,6 +21,7 @@ export default function Habits(props) {
     }
     return (
         <div>
+            <p>Add a habit by <Link to="/add_habit">clicking here</Link></p>
             <p>This will have a list of habits!</p>
             {state.habits.length > 0  ? habitMap() : <p>didn't render</p>}
         </div>
