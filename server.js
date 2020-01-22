@@ -50,13 +50,13 @@ app.get('/users/:id/habits',async (req,res) => {
 });
 
 // inserts one habit into a user
-app.post('/users/:id/habits', async (req,res) => {
-  // console.log(req.body)
+app.post('/users/:id/habits/:newHabit', async (req,res) => {
+  // console.log('req params newHabit = ', req.params.newHabit)
   Users.findById(req.params.id, (err, user)=> {
-    console.log(user);
-    user.habits.push({title: req.body.title})
+    user.habits.push({title: req.params.newHabit})
     user.save().then(user => {
-      res.json('Updated user name')
+      // res.json('Updated user name')
+      res.redirect(`http://localhost:3000/id?id=${user._id}`)
     })
     .catch(err => {
       res.status(400).json({message: err.message});
@@ -95,6 +95,11 @@ app.post('/authentication', async (req,res) => {
     res.status(404).json({message: err.message});
 }
 })
+
+// new route to redirect to all the user's habits after they add a new one
+// app.get('/habits', async (req, res) => {
+//   res.redirect(`http://localhost:3000/id?id=${user._id}`)
+// })
 
 app.get("/seed", (req,res) => {
   seed(req,res)

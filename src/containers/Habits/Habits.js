@@ -5,8 +5,8 @@ import Habit from "../../components/Habit/Habit";
 export default function Habits(props) {
 
     const [state, setState] = useState({habits: []})
+    const id = window.location.search.slice(4);
     useEffect(() => {
-      const id = window.location.search.slice(4);
         fetch(`http://localhost:8081/users/${id}/habits`)
           .then(res => res.json())
           .then((res)=> setState({habits: res}))
@@ -21,7 +21,7 @@ export default function Habits(props) {
     }
     return (
         <div>
-            <p>Add a habit by <Link to="/add_habit">clicking here</Link></p>
+            <p>Add a habit by <Link to={"/add_habit?id=" + id}>clicking here</Link></p>
             <p>This will have a list of habits!</p>
             {state.habits.length > 0  ? habitMap() : <p>didn't render</p>}
         </div>
