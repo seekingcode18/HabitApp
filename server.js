@@ -68,26 +68,25 @@ app.post("/users/:id/habits/:newHabit", async (req, res) => {
 //complete a habit
 
 app.get("/users/:id/habits/:habitId", async (req, res) => {
-  console.log("complete habit route");
-
   Users.findById(req.params.id, (err, user) => {
-    user.habits.findById(req.params.habitId, (err, habit) => {
-      console.log(habit);
-      habit.freq_actual++;
-      if (habit.freq_actual === habit.freq_goal) {
-        var dateObj = new Date();
-        var month = dateObj.getUTCMonth() + 1; //months from 1-12
-        var day = dateObj.getUTCDate() - 1;
-        var year = dateObj.getUTCFullYear();
-        yesterday = year + "/" + month + "/" + day;
-        if (yesterday == habit.date) {
-          habit.streak++;
-        } else {
-          habit.streak *= 0;
-        }
-      }
-      habit.save().then(res => console.log(res));
-    });
+    console.log(user.habits.find(habit => habit._id == req.params.habitId))
+    // user.habits.findById(req.params.habitId, (err, habit) => {
+    //   console.log(habit);
+    //   habit.freq_actual++;
+    //   if (habit.freq_actual === habit.freq_goal) {
+    //     var dateObj = new Date();
+    //     var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    //     var day = dateObj.getUTCDate() - 1;
+    //     var year = dateObj.getUTCFullYear();
+    //     yesterday = year + "/" + month + "/" + day;
+    //     if (yesterday == habit.date) {
+    //       habit.streak++;
+    //     } else {
+    //       habit.streak *= 0;
+    //     }
+    //   }
+    //   habit.save().then(res => console.log(res));
+    // });
     // console.log(user);
     res.redirect(`http://localhost:3000/id?id=${user._id}`);
 
