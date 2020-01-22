@@ -67,11 +67,12 @@ app.post("/users/:id/habits/:newHabit", async (req, res) => {
 
 //complete a habit
 
-app.post("/users/:id/habits/:habitId", async (req, res) => {
-  console.log(Date(Date.now));
+app.get("/users/:id/habits/:habitId", async (req, res) => {
+  console.log("complete habit route");
 
   Users.findById(req.params.id, (err, user) => {
-    user.habits.findOneAndUpdate(req.params.habitId, (err, habit) => {
+    user.habits.findById(req.params.habitId, (err, habit) => {
+      console.log(habit);
       habit.freq_actual++;
       if (habit.freq_actual === habit.freq_goal) {
         var dateObj = new Date();
@@ -85,16 +86,20 @@ app.post("/users/:id/habits/:habitId", async (req, res) => {
           habit.streak *= 0;
         }
       }
+      habit.save().then(res => console.log(res));
     });
-    user
-      .save()
-      .then(user => {
-        res.json("has been updated");
-        // res.redirect(`http://localhost:3000/id?id=${user._id}`);
-      })
-      .catch(err => {
-        res.status(400).json({ message: err.message });
-      });
+    // console.log(user);
+    res.redirect(`http://localhost:3000/id?id=${user._id}`);
+
+    // user
+    //   .save()
+    //   .then(user => {
+    //     // res.json("has been updated");
+    //     res.redirect(`http://localhost:3000/id?id=${user._id}`);
+    //   })
+    //   .catch(err => {
+    //     res.status(400).json({ message: err.message });
+    //   });
   });
 });
 
