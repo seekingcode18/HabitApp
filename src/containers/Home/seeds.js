@@ -6,6 +6,8 @@ module.exports = function seedEvents(req,res) {
     const users = [
         {
             name: 'name 1',
+            username: "username1",
+            password: "password1",
             habits: [
                 {
                     title: "title 1",
@@ -23,6 +25,8 @@ module.exports = function seedEvents(req,res) {
         },
         {
             name: 'name 2',
+            username: "username2",
+            password: "password2",
             habits: [
                 {
                     title: "title a",

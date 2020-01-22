@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from "react";
+import {Link} from 'react-router-dom';
 import Habit from "../../components/Habit/Habit";
 
-export default function Habits() {
+export default function Habits(props) {
 
     const [state, setState] = useState({habits: []})
+    const id = window.location.search.slice(4);
     useEffect(() => {
-        fetch("http://localhost:8081/users/5e259fee807dc62f6c96a3b6/habits")
+        fetch(`http://localhost:8081/users/${id}/habits`)
           .then(res => res.json())
           .then((res)=> setState({habits: res}))
-        //   .then(res => console.log(res));
+          // .then(res => console.log(res));
       });
+
+    function habitMap(){
+      return(
+        state.habits.map((habit, index) => (
+        <Habit title={habit.title} completed={habit.completed}/>
+      )))
+    }
     return (
         <div>
+            <p>Add a habit by <Link to={"/add_habit?id=" + id}>clicking here</Link></p>
             <p>This will have a list of habits!</p>
-            {state.habits.map((habit, index) => (
-              <Habit title={habit.title} completed={habit.completed}/>
-            ))}
+            {state.habits.length > 0  ? habitMap() : <p>didn't render</p>}
         </div>
     )
 }
