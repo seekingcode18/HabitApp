@@ -52,39 +52,51 @@ app.get("/users/:id/habits", async (req, res) => {
 
 // inserts one habit into a user
 app.post("/users/:id/habits/:newHabit", async (req, res) => {
-  // console.log('req params newHabit = ', req.params.newHabit)
   Users.findById(req.params.id, (err, user) => {
     user.habits.push({ title: req.params.newHabit });
     user
       .save()
       .then(user => {
-        // res.json('Updated user name')
         res.redirect(`http://localhost:3000/id?id=${user._id}`);
       })
       .catch(err => {
         res.status(400).json({ message: err.message });
       });
   });
-  // try {
-  //   const users = await Users.updateOne({_id: req.params.id}, req.body.title);
-  //   res.json(users);
-  // }
-  // catch(error){
-  //   res.status(500).json({message: error.message});
-  // }
 });
 
-//testing route to check that username using 'params' has been received from login
-// app.post('/authentication', async (req,res) => {
-//   console.log(req.body)
-// //   try{
-// //     const user = await Users.findOne({username : req.params.username})
-// //     res.json(user._id)
-// //   }
-// //   catch(err) {
-// //     res.status(404).json({message: err.message});
-// // }
-// })
+//complete a habit
+
+app.post("/users/:id/habits/:habitId", async (req, res) => {
+  console.log(Date(Date.now));
+
+  Users.findById(req.params.id, (err, user) => {
+    user.habits.findOneAndUpdate(req.params.habitId, (err, habit) => {
+      habit.freq_actual++;
+      if (habit.freq_actual === habit.freq_goal) {
+        var dateObj = new Date();
+        var month = dateObj.getUTCMonth() + 1; //months from 1-12
+        var day = dateObj.getUTCDate() - 1;
+        var year = dateObj.getUTCFullYear();
+        yesterday = year + "/" + month + "/" + day;
+        if (yesterday == habit.date) {
+          habit.streak++;
+        } else {
+          habit.streak *= 0;
+        }
+      }
+    });
+    user
+      .save()
+      .then(user => {
+        res.json("has been updated");
+        // res.redirect(`http://localhost:3000/id?id=${user._id}`);
+      })
+      .catch(err => {
+        res.status(400).json({ message: err.message });
+      });
+  });
+});
 
 // check username and password using req.body <-- data passed on using axios
 app.post("/authentication", async (req, res) => {
@@ -100,11 +112,6 @@ app.post("/authentication", async (req, res) => {
     res.status(404).json({ message: err.message });
   }
 });
-
-// new route to redirect to all the user's habits after they add a new one
-// app.get('/habits', async (req, res) => {
-//   res.redirect(`http://localhost:3000/id?id=${user._id}`)
-// })
 
 app.get("/seed", (req, res) => {
   seed(req, res);
