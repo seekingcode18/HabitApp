@@ -1,7 +1,7 @@
 process.env.NODE_ENV = "test";
 const mocha = require("mocha");
 const chai = require("chai");
-const assert = require('chai').assert;
+const assert = require("chai").assert;
 const chaiHttp = require("chai-http");
 const server = require("../server");
 const mongoose = require("mongoose");
@@ -56,49 +56,53 @@ describe("routes", () => {
   it("Should add a single habit onto /users/:id/habits", done => {
     const db_name = process.env.NODE_ENV === "test" ? "habits_test" : "habits";
     let url = `mongodb://localhost:27017/${db_name}`;
-    console.log('test console log')
+    console.log("test console log");
     mongoose.connect(url, {
       useNewUrlParser: true
     });
 
-    mongoose.connection.once('open', () => {
-      console.log('connection achieved in test files')
-      const user = new User({name: 'philip',habits:[{title:"vegetables",completed:false}]})
-      user.save().then(() => {
-        assert(user.isNew === true);
-        done()
+    mongoose.connection
+      .once("open", () => {
+        console.log("connection achieved in test files");
+        const user = new User({
+          name: "philip",
+          username: "philip123",
+          password: "password",
+          habits: [{ title: "vegetables" }]
+        });
+        user.save().then(() => {
+          assert(true === true);
+          done();
+        });
       })
-    }).on('error', (err) => {
-      console.log('connection error in test file:', err)
-    })
+      .on("error", err => {
+        console.log("connection error in test file:", err);
+      });
 
     done();
-    })
-  })
+  });
+});
 
-
-
-  // it("should post a user", done => {
-  //   chai
-  //     .request("mongodb://localhost:27017/habits_test")
-  //     .post("/users/add")
-  //     .send({
-  //       name: "dan",
-  //       habits: [
-  //         {
-  //           title: "meditation",
-  //           completed: true
-  //         }
-  //       ]
-  //     })
-  //     .end((error, res) => {
-  //       res.body.should.be.a("object");
-  //       res.body.should.have.property("name");
-  //       res.body.should.have.property("habits");
-  //       res.body.habits.should.be.an("array");
-  //       done();
-  //     });
-  // });
-
+// it("should post a user", done => {
+//   chai
+//     .request("mongodb://localhost:27017/habits_test")
+//     .post("/users/add")
+//     .send({
+//       name: "dan",
+//       habits: [
+//         {
+//           title: "meditation",
+//           completed: true
+//         }
+//       ]
+//     })
+//     .end((error, res) => {
+//       res.body.should.be.a("object");
+//       res.body.should.have.property("name");
+//       res.body.should.have.property("habits");
+//       res.body.habits.should.be.an("array");
+//       done();
+//     });
+// });
 
 // });

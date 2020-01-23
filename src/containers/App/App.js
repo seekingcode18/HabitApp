@@ -18,21 +18,10 @@ function App() {
 
   return (
     <div className="App">
-      <Link to="/">
-        <h4>Persisting Title</h4>
-      </Link>
-      <Link to="/login">
-        <p>Click me to log in!</p>
-      </Link>
-      <Link to="/">
-        <p>Click me to log out!</p>
-      </Link>
-
       <Switch>
         <Route exact path="/">
           <Login />
         </Route>
-        {/* <Route path='/login' component={Login} /> */}
         <Route path="/add_habit" component={Add_habit} />
         <Route path="/id" component={Habits} />
       </Switch>

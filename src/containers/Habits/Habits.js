@@ -26,6 +26,11 @@ export default function Habits(props) {
   }
   return (
     <div>
+      <h2 className="app_title">Habitapp</h2>
+
+      <div class="logout_button">
+        <Link to="/">Click me to log out!</Link>
+      </div>
       <p>
         Add a habit by <Link to={"/add_habit?id=" + id}>clicking here</Link>
       </p>
