@@ -5,57 +5,57 @@ const User = require("../../../user.model");
 module.exports = function seedEvents(req, res) {
   const users = [
     {
-      name: "name 1",
-      username: "username1",
+      name: "Ben Roberts",
+      username: "broberts",
       password: "password1",
       habits: [
         {
-          title: "title 1",
+          title: "glass of water",
           date: "2020-1-22",
-          freq_goal: 1,
+          freq_goal: 8,
           freq_actual: 0,
           streak: 0
         },
         {
-          title: "title 2",
+          title: "reading sessions",
           date: "2020-1-22",
           freq_goal: 2,
           freq_actual: 0,
           streak: 0
         },
         {
-          title: "title 3",
+          title: "meditate",
           date: "2020-1-22",
           freq_goal: 2,
           freq_actual: 0,
-          streak: 0
+          streak: 5
         }
       ]
     },
     {
-      name: "name 2",
-      username: "username2",
+      name: "Jenny brown",
+      username: "jbrown",
       password: "password2",
       habits: [
         {
-          title: "title a",
+          title: "HIIT training",
           date: "2014-06-18",
-          freq_goal: 2,
-          freq_actual: 1,
-          streak: 0
+          freq_goal: 1,
+          freq_actual: 0,
+          streak: 2
         },
         {
-          title: "title b",
+          title: "eating raw kale",
           date: "2012-02-12",
-          freq_goal: 5,
-          freq_actual: 2,
-          streak: 0
-        },
-        {
-          title: "title c",
-          date: "2008-06-10",
           freq_goal: 3,
           freq_actual: 1,
+          streak: 1
+        },
+        {
+          title: "feed dog",
+          date: "2008-06-10",
+          freq_goal: 3,
+          freq_actual: 0,
           streak: 0
         }
       ]

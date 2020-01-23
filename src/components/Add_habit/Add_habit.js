@@ -21,22 +21,23 @@ export default function Add_habit(props) {
       </Link>
       <div className="logout_button">
         <Link to="/">Click me to log out!</Link>
-      </div>
+      </div><br/>
       <form
         action={`http://localhost:8081/users/${id}/habits/${newHabit.newHabit}/${frequency.frequency}`}
         method="POST"
       >
-        <label for="habit">Enter thy habit </label> <br />
+        <label for="habit">Enter thy habit </label> <br/>
         <input
           type="text"
           placeholder="What is your task?"
           onChange={handleTitle}
+          className="habitTitle "
         ></input>
+        <br /><br/>
         <label for="frequency">
           how many times a day do you want to do this?
-        </label>{" "}
-        <br />
-        <input type="number" onChange={handleFrequency}></input>
+        </label><br/>
+        <input type="number" min="1" onChange={handleFrequency} placeholder="select frequency"></input><br/>
         <input type="submit" />
       </form>
     </div>

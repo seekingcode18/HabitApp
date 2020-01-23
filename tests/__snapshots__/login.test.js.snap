@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Shallow Habits should render correctly 1`] = `
+<div>
+  <h2
+    className="app_title"
+  >
+    Habitapp
+  </h2>
+  <div
+    class="logout_button"
+  >
+    <Link
+      to="/"
+    >
+      Click me to log out!
+    </Link>
+  </div>
+  <p>
+    Add a habit by 
+    <Link
+      to="/add_habit?id="
+    >
+      clicking here
+    </Link>
+  </p>
+  <p>
+    This will have a list of habits!
+  </p>
+  <p>
+    didn't render
+  </p>
+</div>
+`;
+
+exports[`shallow login should render correctly 1`] = `
+<div>
+  <h2
+    className="app_title"
+  >
+    Habitapp
+  </h2>
+  <div
+    className="login_box_outer"
+  >
+    <div
+      className="login_box"
+    >
+      <div
+        className="login_vert_box"
+      >
+        <form
+          action="http://localhost:8081/authentication"
+          method="POST"
+        >
+          <div
+            className="form_component"
+          >
+            <label
+              for="username"
+            >
+              Username:
+            </label>
+            <input
+              name="username"
+              type="text"
+            />
+          </div>
+          <div
+            className="form_component"
+          >
+            <label
+              for="password"
+            >
+              Password:
+            </label>
+            <input
+              name="password"
+              type="password"
+            />
+          </div>
+          <input
+            className="submit_button"
+            type="submit"
+            value="submit"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
