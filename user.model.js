@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 let tasks = new Schema({
   title: { type: String, required: true },
-  date: { type: Date },
+  date: { type: String },
   freq_goal: Number,
   freq_actual: Number,
   streak: Number

@@ -69,26 +69,58 @@ app.post("/users/:id/habits/:newHabit", async (req, res) => {
 
 app.get("/users/:id/habits/:habitId", async (req, res) => {
   Users.findById(req.params.id, (err, user) => {
-    console.log(user.habits.find(habit => habit._id == req.params.habitId))
-    // user.habits.findById(req.params.habitId, (err, habit) => {
-    //   console.log(habit);
-    //   habit.freq_actual++;
-    //   if (habit.freq_actual === habit.freq_goal) {
+    //find current habbit in db
+
+    const currentHabit = user.habits.find(habit => habit._id == req.params.habitId);
+    console.log("before:", user);
+    //build object for the habit ready to insert into db
+    //increment freq_actual 'onclick'
+    currentHabit.freq_actual++;
+    if (currentHabit.freq_actual === currentHabit.freq_goal) {
+      var dateObj = new Date();
+      var month = dateObj.getUTCMonth() + 1; //months from 1-12
+      var day = dateObj.getUTCDate() - 1;
+      var year = dateObj.getUTCFullYear();
+      yesterday = year + "-" + month + "-" + day;
+      console.log("yesterday:", yesterday);
+      console.log("current habit date:", currentHabit.date);
+      //compares dates to determine whether to increment streak or clear it
+      if (yesterday == currentHabit.date) {
+        currentHabit.streak += 1;
+        console.log("updated streak?")
+
+      } else {
+        currentHabit.streak *= 0;
+      }
+    }
+    const index = user.habits.findIndex(habit => habit._id == req.params.habitId);
+    user.habits.splice(index, 1, currentHabit);
+    
+    console.log("after:", user);
+
+    user.save()
+    .then(
+      res.redirect(`http://localhost:3000/id?id=${user._id}`)
+    )
+    .catch(err => {
+          res.status(400).json({ message: err.message });
+        });
+    // console.log(currentHabit);
+    // currentHabit.freq_actual++;
+    // if (currentHabit.freq_actual === currentHabit.freq_goal) {
     //     var dateObj = new Date();
     //     var month = dateObj.getUTCMonth() + 1; //months from 1-12
     //     var day = dateObj.getUTCDate() - 1;
     //     var year = dateObj.getUTCFullYear();
     //     yesterday = year + "/" + month + "/" + day;
-    //     if (yesterday == habit.date) {
-    //       habit.streak++;
+    //     if (yesterday == currentHabit.date) {
+    //       currentHabit.streak++;
     //     } else {
-    //       habit.streak *= 0;
+    //       currentHabit.streak *= 0;
     //     }
     //   }
     //   habit.save().then(res => console.log(res));
-    // });
     // console.log(user);
-    res.redirect(`http://localhost:3000/id?id=${user._id}`);
 
     // user
     //   .save()
