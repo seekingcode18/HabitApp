@@ -14,7 +14,14 @@ export default function Habits(props) {
 
   function habitMap() {
     return state.habits.map((habit, index) => (
-      <Habit title={habit.title} habitId={habit._id} userId={id} />
+      <Habit
+        title={habit.title}
+        habitId={habit._id}
+        freq_actual={habit.freq_actual}
+        freq_goal={habit.freq_goal}
+        streak={habit.streak}
+        userId={id}
+      />
     ));
   }
   return (

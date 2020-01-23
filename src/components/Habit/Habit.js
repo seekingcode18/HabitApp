@@ -9,8 +9,12 @@ export default function Habit(props) {
         <a
           href={`http://localhost:8081/users/${props.userId}/habits/${props.habitId}`}
         >
-          {props.title}:{props.habitId} / {props.userId}
+          {props.title}
         </a>
+        <p>
+          frequency: {props.freq_actual} / {props.freq_goal}
+        </p>
+        <p>streak: {props.streak}</p>
       </p>
       {/* </Link> */}
       {/* <Switch>
