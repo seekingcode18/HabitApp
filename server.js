@@ -55,7 +55,9 @@ app.post("/users/:id/habits/:newHabit/:frequency", async (req, res) => {
   Users.findById(req.params.id, (err, user) => {
     user.habits.push({
       title: req.params.newHabit,
-      freq_goal: req.params.frequency
+      freq_goal: req.params.frequency,
+      freq_actual: 0,
+      streak: 0,
     });
     user
       .save()
@@ -100,6 +102,7 @@ app.get("/users/:id/habits/:habitId", async (req, res) => {
     const index = user.habits.findIndex(
       habit => habit._id == req.params.habitId
     );
+
     user.habits.splice(index, 1, currentHabit);
 
     console.log("after:", user);
