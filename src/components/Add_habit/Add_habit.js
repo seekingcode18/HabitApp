@@ -15,30 +15,46 @@ export default function Add_habit(props) {
   }
 
   return (
-    <div>
-      <Link to={`/id${props.location.search}`}>
-        <h2 className="app_title">Habitapp</h2>
-      </Link>
-      <div className="logout_button">
-        <Link to="/">Click me to log out!</Link>
-      </div><br/>
+    <div className="addHabit">
+      <div className="habits_title">
+        <div className="habits_title_text">
+          <img src="https://img.icons8.com/bubbles/100/000000/double-tick.png" />
+          <h2 className="app_title">Habitapp</h2>
+        </div>
+        <div>
+          <Link to="/" class="logout_button">
+            &times;
+          </Link>
+        </div>
+      </div>
       <form
         action={`http://localhost:8081/users/${id}/habits/${newHabit.newHabit}/${frequency.frequency}`}
         method="POST"
       >
-        <label for="habit">Enter thy habit </label> <br/>
         <input
           type="text"
           placeholder="What is your task?"
           onChange={handleTitle}
           className="habitTitle "
-        ></input>
+          list="habits"
+        >
+        </input>
+        <datalist id="habits">
+          <option>HIIT</option>
+          <option>Yoga</option>
+          <option>Meditate</option>
+          <option>Reading</option>
+          <option>Drinking Water</option>
+          <option>Eating Vegetables</option>
+          <option>Eating Fruit</option>
+          <option>Writing</option>
+          <option>Cooking</option>
+          <option>Push-ups</option>
+          <option>Sleep Earlier</option>
+        </datalist>
         <br /><br/>
-        <label for="frequency">
-          how many times a day do you want to do this?
-        </label><br/>
-        <input type="number" min="1" onChange={handleFrequency} placeholder="select frequency"></input><br/>
-        <input type="submit" />
+        <input type="number" min="1" onChange={handleFrequency} placeholder="Select Frequency"></input><br/>
+        <input className="submit_button" type="submit" style={{marginLeft: "45px"}}/>
       </form>
     </div>
   );

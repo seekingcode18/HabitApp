@@ -11,21 +11,21 @@ module.exports = function seedEvents(req, res) {
       habits: [
         {
           title: "glass of water",
-          date: "2020-1-22",
+          date: "2020-1-23",
           freq_goal: 8,
           freq_actual: 0,
           streak: 0
         },
         {
           title: "reading sessions",
-          date: "2020-1-22",
+          date: "2020-1-23",
           freq_goal: 2,
           freq_actual: 0,
           streak: 0
         },
         {
           title: "meditate",
-          date: "2020-1-22",
+          date: "2020-1-23",
           freq_goal: 2,
           freq_actual: 0,
           streak: 5

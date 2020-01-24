@@ -82,20 +82,26 @@ app.get("/users/:id/habits/:habitId", async (req, res) => {
     console.log("before:", user);
     //build object for the habit ready to insert into db
     //increment freq_actual 'onclick'
-    currentHabit.freq_actual++;
+    if(currentHabit.freq_actual < currentHabit.freq_goal) {
+      currentHabit.freq_actual++;
+    }
     if (currentHabit.freq_actual === currentHabit.freq_goal) {
       var dateObj = new Date();
       var month = dateObj.getUTCMonth() + 1; //months from 1-12
       var day = dateObj.getUTCDate() - 1;
       var year = dateObj.getUTCFullYear();
       yesterday = year + "-" + month + "-" + day;
+      today = year + "-" + month + "-" + (day + 1)
       console.log("yesterday:", yesterday);
       console.log("current habit date:", currentHabit.date);
       //compares dates to determine whether to increment streak or clear it
       if (yesterday == currentHabit.date) {
         currentHabit.streak += 1;
-        console.log("updated streak?");
-      } else {
+        currentHabit.date = today;
+      } else if (today == currentHabit.date){
+        console.log("task achieved for the day!")
+      } 
+      else {
         currentHabit.streak *= 0;
       }
     }
