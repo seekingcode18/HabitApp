@@ -1,68 +1,75 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Habitapp
 
-## Available Scripts
+[Dan ledwos](https://github.com/Ledwos) ||
+[Christopher King](https://github.com/seekingcode18) ||
+[Elizabeth Luong](https://github.com/elizabethluong/)
 
-In the project directory, you can run:
+## Contents
 
-### `yarn start`
+[User-Instructions](#User-Instructions) ||
+[Brief](#brief) ||
+[User Stories](#user-stories) ||
+[Methodologies and Processes](#methodologies-and-processes) ||
+[Reflections on the Project](#reflections-on-the-project)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## User Instructions
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+1. Open terminal and run `mongod`
+2. In a new terminal `git clone https://github.com/elizabethluong/lap-3-group-project-habitapp.git`
+3. `npm install`
+4. `Node server`
+5. Visit a browser and type in `http://localhost:8081/seed`
+6. In a new terminal run `npm start`
+7. Login with this username: broberts and password: password1 or with this username: jbrown and password: password2
 
-### `yarn test`
+## Brief
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Create an app where users can track their habits. Developers should host a database to store the daily information about users locally.
+(edited)
 
-### `yarn build`
+## User Stories
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- As a user I would want to track my habits:
+  - As a user I want to choose a habit I want to track
+  - As a user I want to be able to add tasks to track
+  - As a user I would want to be able to select the frequency of each task
+  - As a user I would want to see my completed tasks.
+  - As a user I would want to see my streak
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Stretch goal:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- As a user I would like to be able to login
+- As a user I would like to remove my task/s
+- Oauth for logins
 
-### `yarn eject`
+## Methodologies and Processes
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Standups every morning at 9.15AM
+- Each team member:
+  - Go through what was achieved the day before.
+  - What they're looking to achieve in the day ahead.
+  - if there's any blockers.
+- MOB programming
+- Retros at 5.45pm 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Technologies
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- CSS
+- JavaScript
+- React
+- Git & Github
+- Nodemon
+- Jest
+- Enzyme
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Reflections on the Project
 
-## Learn More
+In the planning process, we struggled with visualising how to store the data in the database. We overcame this by sketching what the object would look like and then we revised this multiple times throughout the project.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+One of the biggest challenge we faced was human error due to fatigue, this could be solved by shorter rotations and more frequent breaks.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Because we chose to nest the habits in the user object we had difficulties adding a habit. We ended up finding and copying a user from the database, performing logical operatons to update the user object before saving it back to the database. The final hurdle in solving this problem was using a strict type comparison between a string and a object so we replaced this with a weak comparison equality operator.
