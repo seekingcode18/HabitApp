@@ -5,6 +5,7 @@ import fetch from "../../api/fetch";
 import Add_habit from "../../components/Add_habit/Add_habit";
 import Habits from "../Habits/Habits";
 import Login from "../Login/Login";
+import NoMatch from '../../components/NoMatch/NoMatch';
 import { Route, Switch, Link } from "react-router-dom";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         </Route>
         <Route path="/add_habit" component={Add_habit} />
         <Route path="/id" component={Habits} />
+        <Route component={NoMatch} />
       </Switch>
     </div>
   );
