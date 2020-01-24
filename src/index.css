@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +11,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background: yellow; */
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+linear-gradient(45deg, #fbe0be 45px, transparent 45px)64px 64px,
+linear-gradient(45deg, #fbe0be 45px, transparent 45px,transparent 91px, #f0fcf9 91px, #f0fcf9 135px, transparent 135px),
+linear-gradient(-45deg, #fbe0be 23px, transparent 23px, transparent 68px,#fbe0be 68px,#fbe0be 113px,transparent 113px,transparent 158px,#fbe0be 158px);
+background-color:#f0fcf9;
+background-size: 128px 128px;
 }
 
 code {

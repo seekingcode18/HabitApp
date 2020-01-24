@@ -3,29 +3,18 @@ import { Link, Switch, Route } from "react-router-dom";
 
 export default function Habit(props) {
   return (
-    <div>
-      {/* <Link to={("/update_habit/", props.habitId, props.userId)}> */}
-      <p>
+    <div className="task_container">
         <a
           href={`http://localhost:8081/users/${props.userId}/habits/${props.habitId}`}
         >
-          {props.title}
-        </a>
+          <p class="task_title">
+            {props.title}
+          </p>
         <p>
-          frequency: {props.freq_actual} / {props.freq_goal}
+          Frequency: {props.freq_actual} / {props.freq_goal}
         </p>
-        <p>streak: {props.streak}</p>
-      </p>
-      {/* </Link> */}
-      {/* <Switch>
- <Route
-          path="/update_habit"
-          component={() => {
-            window.location.href = `http://localhost:8081/users/${props.userId}/habits/${props.habitId}`;
-            return null;
-          }}
-        />
-      </Switch> */}
+        <p>Streak: {props.streak}</p>
+        </a>
     </div>
   );
 }
