@@ -128,7 +128,8 @@ app.post("/authentication", async (req, res) => {
     // res.json(user._id)
     res.redirect(`http://localhost:3000/id?id=${user._id}`);
   } catch (err) {
-    res.status(404).json({ message: err.message });
+    // console.log(status(404).json({ message: err.message }))
+    res.redirect('http://localhost:3000')
   }
 });
 
