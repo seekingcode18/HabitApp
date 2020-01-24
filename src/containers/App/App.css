@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-};
+}
 
 form {
   color: black;
@@ -22,7 +22,7 @@ form {
 }
 
 .login_box {
-  background-color: aquamarine;
+  background-color: #b7ffdc;
   width: 30%;
   height: 200px;
   border-radius: 10px;
@@ -30,4 +30,39 @@ form {
 
 .submit_button {
   padding: 2px 30px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+  border-radius: 5px;
+  width: 200px;
+  border: gray 1px solid;
+  box-shadow: 0 0 5px #999999;
+  padding: 5px 20px;
+}
+
+,
+input[type="submit"] {
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  background: #ffe4a1;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover,
+.removeBtn:hover {
+  color: white;
+  background: #ff5555;
+}
+
+h2 {
+  font-size: 20px;
+  color: #ff5555;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
 }

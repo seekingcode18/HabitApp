@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import '../App/App.css';
+import "../App/App.css";
 
 export default function Login() {
   const [user, setUser] = useState({ username: null });
@@ -39,14 +39,26 @@ export default function Login() {
           <div className="login_vert_box">
             <form action="http://localhost:8081/authentication" method="POST">
               <div className="form_component">
-              <label for="username">Username:</label>
-              <input type="text" name="username"></input>
+                <label for="username"></label>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                ></input>
               </div>
               <div className="form_component">
-              <label for="password">Password:</label>
-              <input type="password" name="password"></input>
+                <label for="password"></label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                ></input>
               </div>
-              <input className="submit_button" type="submit" value="submit"></input>
+              <input
+                className="submit_button"
+                type="submit"
+                value="submit"
+              ></input>
             </form>
           </div>
         </div>
