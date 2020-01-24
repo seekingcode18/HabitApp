@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Habit from "../../components/Habit/Habit";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Habit from '../../components/Habit/Habit';
 
 export default function Habits(props) {
   const [state, setState] = useState({ habits: [] });
@@ -25,17 +25,28 @@ export default function Habits(props) {
     ));
   }
   return (
-    <div>
-      <h2 className="app_title">Habitapp</h2>
-
-      <div class="logout_button">
-        <Link to="/">Click me to log out!</Link>
+    <div className="habits_container">
+      <div className="habits_title">
+        <div className="habits_title_text">
+          <img src="https://img.icons8.com/bubbles/100/000000/double-tick.png" />
+          <h2 className="app_title">Habitapp</h2>
+        </div>
+        <div>
+          <Link to="/" class="logout_button">
+            &times;
+          </Link>
+        </div>
       </div>
+      {state.habits.length > 0 ? (
+        habitMap()
+      ) : (
+        <p>Error, please make sure you are logged in!</p>
+      )}
       <p>
-        Add a habit by <Link to={"/add_habit?id=" + id}>clicking here</Link>
+        <Link class="add_button" to={'/add_habit?id=' + id}>
+          Add habit
+        </Link>
       </p>
-      <p>This will have a list of habits!</p>
-      {state.habits.length > 0 ? habitMap() : <p>Error, please make sure you are logged in!</p>}
     </div>
   );
 }

@@ -1,5 +1,20 @@
 .App {
   text-align: center;
+  /* background: #000; */
+}
+
+h2 {
+  color: #2653C4;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 form {
@@ -10,26 +25,48 @@ form {
   /* border: 2px solid red; */
 }
 
-.login_box_outer {
-  display: flex;
-  justify-content: center;
-}
-
-.login_vert_box {
-  /* display: flex; */
-  margin-top: 55px;
-  /* border: 2px solid orange; */
-}
-
 .login_box {
-  background-color: #b7ffdc;
-  width: 30%;
-  height: 200px;
+  background-color: #B3F0E6;
+  width: 450px;
+  min-height: 500px;
   border-radius: 10px;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.submit_button {
-  padding: 2px 30px;
+.login_box > * {
+  padding: 1rem 0;
+}
+
+.submit_button, .add_button, .logout_button {
+  padding: 0.7rem 1.7rem;
+  margin: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  background: #EE749B;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #ffffff;
+  display: block;
+}
+
+.logout_button {
+  background: #ffffff;
+  color: #ee749b;
+  font-weight: bold;
+  font-size: 2rem;
+  padding: 0 12px 6px 12px;
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover,
+.removeBtn:hover {
+  color: white;
+  background: #2653C4;
 }
 
 input[type="text"],
@@ -42,27 +79,60 @@ input[type="number"] {
   padding: 5px 20px;
 }
 
-,
-input[type="submit"] {
-  padding: 8px 15px;
-  font-size: 14px;
+.habits_container {
+  background-color: #B3F0E6;
+  width: 450px;
+  min-height: 500px;
+  border-radius: 1rem;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.habits_title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+  padding: 1rem 0;
+}
+
+.habits_title_text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.task_container {
+  background: rgba(255,255,255,0.5);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  width: 90%;
+  padding: 0.5rem 2rem;
+  transition: 0.2s;
+}
+
+.task_title {
+  text-transform: capitalize;
+  color: #EE749B;
   font-weight: bold;
-  background: #ffe4a1;
-  border: 0;
-  border-radius: 10px;
-  cursor: pointer;
 }
 
-input[type="button"]:hover,
-input[type="submit"]:hover,
-.removeBtn:hover {
-  color: white;
-  background: #ff5555;
+.task_container:hover {
+  background: rgba(255,255,255,0.85);
 }
 
-h2 {
-  font-size: 20px;
-  color: #ff5555;
-  text-transform: uppercase;
-  font-family: "Montserrat", sans-serif;
+.add_button {
+
+}
+/* 404 */
+h1 {
+  color: rgb(0, 182, 97);
+  font-size: 250px;
+  font-family: cursive;
+  padding: 0%;
+  margin: 0%;
 }
