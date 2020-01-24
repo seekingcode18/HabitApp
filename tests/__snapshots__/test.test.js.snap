@@ -1,39 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Shallow Habits should render correctly 1`] = `
-<div>
-  <h2
-    className="app_title"
-  >
-    Habitapp
-  </h2>
-  <div
-    class="logout_button"
-  >
-    <Link
-      to="/"
-    >
-      Click me to log out!
-    </Link>
+exports[`Add_habit.js should render correctly 1`] = `undefined`;
+
+exports[`Habit.js should render correctly 1`] = `
+<Habit>
+  <div>
+    <p>
+      <a
+        href="http://localhost:8081/users/undefined/habits/undefined"
+      />
+      <p>
+        frequency: 
+         / 
+      </p>
+      <p>
+        streak: 
+      </p>
+    </p>
   </div>
-  <p>
-    Add a habit by 
-    <Link
-      to="/add_habit?id="
-    >
-      clicking here
-    </Link>
-  </p>
-  <p>
-    This will have a list of habits!
-  </p>
-  <p>
-    didn't render
-  </p>
-</div>
+</Habit>
 `;
 
-exports[`shallow login should render correctly 1`] = `
+exports[`Login.js should render correctly 1`] = `
 <div>
   <h2
     className="app_title"
@@ -88,5 +76,38 @@ exports[`shallow login should render correctly 1`] = `
       </div>
     </div>
   </div>
+</div>
+`;
+
+exports[`Shallow Habits should render correctly 1`] = `
+<div>
+  <h2
+    className="app_title"
+  >
+    Habitapp
+  </h2>
+  <div
+    class="logout_button"
+  >
+    <Link
+      to="/"
+    >
+      Click me to log out!
+    </Link>
+  </div>
+  <p>
+    Add a habit by 
+    <Link
+      to="/add_habit?id="
+    >
+      clicking here
+    </Link>
+  </p>
+  <p>
+    This will have a list of habits!
+  </p>
+  <p>
+    didn't render
+  </p>
 </div>
 `;
