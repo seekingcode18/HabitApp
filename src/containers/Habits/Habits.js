@@ -35,7 +35,7 @@ export default function Habits(props) {
         Add a habit by <Link to={"/add_habit?id=" + id}>clicking here</Link>
       </p>
       <p>This will have a list of habits!</p>
-      {state.habits.length > 0 ? habitMap() : <p>didn't render</p>}
+      {state.habits.length > 0 ? habitMap() : <p>Error, please make sure you are logged in!</p>}
     </div>
   );
 }
