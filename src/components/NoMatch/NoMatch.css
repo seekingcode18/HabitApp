@@ -1,0 +1,17 @@
+h1 {
+    color: rgb(0, 182, 97);
+    font-size: 250px;
+    font-family: cursive;
+    padding: 0%;
+    margin: 0%;
+}
+
+p {
+    font-size: 50px;
+    font-family: cursive;
+}
+
+button {
+    font-size: 30px;
+    font-family: cursive;
+}
