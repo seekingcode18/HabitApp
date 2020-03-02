@@ -12,6 +12,7 @@
 [Methodologies and Processes](#methodologies-and-processes) ||
 [Reflections on the Project](#reflections-on-the-project)
 
+
 ## User Instructions
 
 1. Open terminal and run `mongod`
@@ -22,10 +23,11 @@
 6. In a new terminal run `npm start`
 7. Login with this username: broberts and password: password1 or with this username: jbrown and password: password2
 
+
 ## Brief
 
 Create an app where users can track their habits. Developers should host a database to store the daily information about users locally.
-(edited)
+
 
 ## User Stories
 
@@ -36,35 +38,30 @@ Create an app where users can track their habits. Developers should host a datab
   - As a user I would want to see my completed tasks.
   - As a user I would want to see my streak
 
-Stretch goal:
+Stretch goals:
 
-- As a user I would like to be able to login
+- As a user I would like to be able to log in
 - As a user I would like to remove my task/s
-- Oauth for logins
+
 
 ## Methodologies and Processes
 
 - Standups every morning at 9.15AM
-- Each team member:
-  - Go through what was achieved the day before.
-  - What they're looking to achieve in the day ahead.
-  - if there's any blockers.
-- MOB programming
+- Significant planning and reflection
+- Mob programming
 - Retros at 5.45pm 
+
 
 ### Technologies
 
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
+- Node.js / Express.js
+- MongoDB / Mongoose
 - CSS
 - JavaScript
 - React
 - Git & Github
-- Nodemon
-- Jest
-- Enzyme
+- Jest / Enzyme
+
 
 ## Reflections on the Project
 
@@ -73,3 +70,8 @@ In the planning process, we struggled with visualising how to store the data in 
 One of the biggest challenge we faced was human error due to fatigue, this could be solved by shorter rotations and more frequent breaks.
 
 Because we chose to nest the habits in the user object we had difficulties adding a habit. We ended up finding and copying a user from the database, performing logical operatons to update the user object before saving it back to the database. The final hurdle in solving this problem was using a strict type comparison between a string and a object so we replaced this with a weak comparison equality operator.
+
+If we had more time, we would seek to implement the following:
+- broader test coverage
+- add tasks to favourites
+- tag or categorise habits
